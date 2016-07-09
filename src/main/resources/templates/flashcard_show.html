@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <title th:text="${flashCard.term}" />
+    <meta name="description" content="A Flash Card game about Java terms" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto|Suez+One" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/global.css" />
+</head>
+<body>
+
+<div class="title">
+    <h1 class="logo"><a href="./index.html">Flashy</a></h1>
+</div>
+<div class="bounds">
+    <a href="#" id="flashCard" class="card-container">
+        <div class="card-flipper">
+            <div class="card card-flash card-front">
+                <h1 class="card-word" th:text="${flashCard.term}" />
+                <p class="card-viewed">Viewed <span th:text="${viewCount}" /> times</p>
+            </div>
+            <div class="card card-flash card-back">
+                <div class="card-definition" th:text="${flashCard.definition}" />
+            </div>
+        </div>
+    </a>
+</div>
+<a href="/flashcard/next" class="card card-flash card-next">Next</a>
+
+<script>
+      document.getElementById('flashCard').addEventListener('click', function(e) {
+        document.getElementById('flashCard').classList.toggle('flip')
+        e.preventDefault();
+      });
+    </script>
+</body>
+</html>
