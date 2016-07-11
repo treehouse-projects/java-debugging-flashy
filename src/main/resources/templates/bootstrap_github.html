@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <title>Flashy</title>
+    <meta name="description" content="A Flash Card game about Java terms" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto|Suez+One" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/global.css" />
+</head>
+<body class="index">
+<div class="bounds">
+    <div class="card">
+        <h1 class="logo">GitHub Bootstrap</h1>
+        <div th:if="${configNeedsUpdate}" style="text-align: left">
+            <p>In order to copy issues across you need to create a <a href="https://github.com/settings/tokens" target="_blank">GitHub personal access token</a>.</p>
+            <p>On that page, choose "Generate new token".
+                <ol>
+                    <li>Name it something like "Treehouse Issue Copier"</li>
+                    <li>Check the repo scope.  (The first one).</li>
+                    <li>Click Generate token.</li>
+                    <li>Copy the token to your clipboard</li>
+                    <li>Replace "YOUR-TOKEN-HERE" in the <code>resources/application.properties</code> file.</li>
+                </ol>
+            </p>
+        </div>
+        <div th:unless="${configNeedsUpdate}">
+            <div th:unless="${shouldFork}">
+                <p>Are you ready to fork the <code th:text="${repoName}"></code> and its issues to your <code th:text="${gitHubUserName}"></code> GitHub Account</p>
+                <a href="/bootstrap/github?forkIt=true">Fork it!</a>
+            </div>
+            <div th:if="${shouldFork}" style="text-align: left">
+                <h2>Success!</h2>
+                <p>The following actions were performed:
+                    <ul>
+                        <li th:each="action : ${actions}" th:text="${action}" />
+                    </ul>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
