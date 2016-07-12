@@ -6,7 +6,7 @@ It is currently in prototype format.
 
 ## About this repository
 
-This repository is used for the [Treehouse](https://teamtreehouse.com/) workshop: [Debugging an Existing Java Application[(https://teamtreehouse.com/library/debugging-an-existing-java-application)
+This repository is used for the [Treehouse](https://teamtreehouse.com/) workshop: [Debugging an Existing Java Application](https://teamtreehouse.com/library/debugging-an-existing-java-application)
 
 ## Contributing
 Please make forks of this repository.  
@@ -20,4 +20,5 @@ If you do not have that code style installed in your editor, find the [appropria
 
 
 Thanks and happy coding!
+
 [@craigsdennis](http://twitter.com/craigsdennis)
