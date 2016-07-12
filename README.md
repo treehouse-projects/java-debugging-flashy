@@ -16,7 +16,7 @@ http://localhost:8080/bootstrap/github
 
 The original authors of this code used the [Google Java Style Guide](https://google.github.io/styleguide/javaguide.html).  
 
-If you do not have that code style installed in your editor, find the [appropriate integration code here](https://github.com/google/styleguide).
+If you do not have that code style installed in your editor, find the [appropriate integration code here](https://github.com/bundeskanzler4711/styleguide/) (fork updated for newest IntelliJ release).
 
 
 Thanks and happy coding!
