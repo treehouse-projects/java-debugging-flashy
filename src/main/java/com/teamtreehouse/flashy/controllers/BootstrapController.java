@@ -1,5 +1,7 @@
 package com.teamtreehouse.flashy.controllers;
 
+import com.teamtreehouse.flashy.domain.BootstrapOptions;
+
 import org.eclipse.egit.github.core.Issue;
 import org.eclipse.egit.github.core.Repository;
 import org.eclipse.egit.github.core.User;
@@ -8,11 +10,11 @@ import org.eclipse.egit.github.core.client.RequestException;
 import org.eclipse.egit.github.core.service.IssueService;
 import org.eclipse.egit.github.core.service.RepositoryService;
 import org.eclipse.egit.github.core.service.UserService;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -23,7 +25,6 @@ import static java.util.stream.Collectors.toList;
 
 @Controller
 public class BootstrapController {
-  private final String DEFAULT_TOKEN = "YOUR-TOKEN-HERE";
   private final String GITHUB_MASTER_REPO_OWNER = "treehouse-projects";
   private final String GITHUB_MASTER_REPO_NAME = "java-debugging-flashy";
 
@@ -43,23 +44,26 @@ public class BootstrapController {
     }
   }
 
-  @Value("${github.oauth.token}")
   private String oauthToken;
 
-  @RequestMapping("/bootstrap/github")
-  public String setupGitHub(@RequestParam(value = "forkIt", defaultValue = "false") boolean forkIt, Model model) {
+  @RequestMapping(value = "/bootstrap/github", method = RequestMethod.GET)
+  public String promptForGitHub(Model model) {
+    model.addAttribute("options", new BootstrapOptions());
+    return "bootstrap_github";
+  }
+
+  @RequestMapping(value = "/bootstrap/github", method = RequestMethod.POST)
+  public String forkIt(@ModelAttribute BootstrapOptions options, Model model) {
+    model.addAttribute("options", options);
+    oauthToken = options.getGithubOauth();
     WorkLog workLog = new WorkLog();
     try {
-      boolean configNeedsUpdate = oauthToken.equals(DEFAULT_TOKEN);
-      model.addAttribute("configNeedsUpdate", configNeedsUpdate);
-      model.addAttribute("shouldFork", forkIt);
       model.addAttribute("repoName", GITHUB_MASTER_REPO_NAME);
-      if (!configNeedsUpdate) {
-        String userName = getGitHubUserName();
+      String userName = getGitHubUserName();
+      if (!options.isShouldFork()) {
         model.addAttribute("gitHubUserName", userName);
-        if (forkIt) {
-          bootstrapRepo(workLog, userName);
-        }
+      } else {
+        bootstrapRepo(workLog, userName);
       }
     } catch (IOException e) {
       e.printStackTrace();
@@ -104,10 +108,11 @@ public class BootstrapController {
       for (Issue issue : issues) {
         if (!existingIssueTitles.contains(issue.getTitle())) {
           issueService.createIssue(gitHubUserName, GITHUB_MASTER_REPO_NAME, issue);
+          workLog.track("Added issue '%s'", issue.getTitle());
           issueCount++;
         }
       }
     }
-    workLog.track("Created %d issues in your repoository", issueCount);
+    workLog.track("Created %d new issues in your repoository", issueCount);
   }
 }
