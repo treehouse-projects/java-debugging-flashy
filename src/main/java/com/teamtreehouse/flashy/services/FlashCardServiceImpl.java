@@ -2,15 +2,10 @@ package com.teamtreehouse.flashy.services;
 
 import com.teamtreehouse.flashy.domain.FlashCard;
 import com.teamtreehouse.flashy.repositories.FlashCardRepository;
-import org.hibernate.mapping.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 import static java.util.stream.Collectors.toList;
 
@@ -59,7 +54,6 @@ public class FlashCardServiceImpl implements FlashCardService {
   }
 
   public FlashCard getLeastViewedFlashCard(Map<Long, Long> idToViewCounts) {
-    Long leastViewedId = null;
     List<Map.Entry<Long, Long>> entries = new ArrayList<>(idToViewCounts.entrySet());
     Collections.shuffle(entries);
     return entries.stream()
