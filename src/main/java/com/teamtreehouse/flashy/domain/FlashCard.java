@@ -14,7 +14,7 @@ public class FlashCard {
   private String term;
   private String definition;
 
-  protected FlashCard() {
+  public FlashCard() {
     id = null;
   }
 
