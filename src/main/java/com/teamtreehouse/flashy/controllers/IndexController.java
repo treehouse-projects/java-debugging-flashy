@@ -32,6 +32,7 @@ public class IndexController {
 
       }
     }
+    //
     Long totalCount = flashCardService.getCurrentCount();
     if(totalCount > AMOUNT_TO_SHOW) {
       ctaBuilder.append(" and ");
