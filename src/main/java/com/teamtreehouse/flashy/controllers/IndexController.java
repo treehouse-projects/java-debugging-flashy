@@ -30,10 +30,12 @@ public class IndexController {
         ctaBuilder.append(", ");
       }
     }
-    ctaBuilder.append(" and ");
     Long totalCount = flashCardService.getCurrentCount()-AMOUNT_TO_SHOW;
-    ctaBuilder.append(totalCount);
-    ctaBuilder.append(" more");
+    if(totalCount> AMOUNT_TO_SHOW) {
+      ctaBuilder.append(" and ");
+      ctaBuilder.append(totalCount);
+      ctaBuilder.append(" more");
+    }
     model.addAttribute("cta", ctaBuilder.toString());
     model.addAttribute("flashCardCount", totalCount);
     return "index";
