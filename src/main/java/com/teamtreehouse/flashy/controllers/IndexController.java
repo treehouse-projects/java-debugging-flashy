@@ -35,7 +35,7 @@ public class IndexController {
     if (totalCount > AMOUNT_IN_TOTAL){
       ctaBuilder.append(" and ");
       ctaBuilder.append(totalCount - AMOUNT_IN_TOTAL);
-      ctaBuilder.append(" more");
+      ctaBuilder.append(" more.");
       model.addAttribute("cta", ctaBuilder.toString());
       model.addAttribute("flashCardCount");
     }
