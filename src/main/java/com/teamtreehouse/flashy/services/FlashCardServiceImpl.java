@@ -1,18 +1,16 @@
 package com.teamtreehouse.flashy.services;
 
+import static java.util.stream.Collectors.toList;
+
 import com.teamtreehouse.flashy.domain.FlashCard;
 import com.teamtreehouse.flashy.repositories.FlashCardRepository;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
-
-import static java.util.stream.Collectors.toList;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 @Service
 public class FlashCardServiceImpl implements FlashCardService {
@@ -62,10 +60,10 @@ public class FlashCardServiceImpl implements FlashCardService {
         continue;
       }
       Long lowestScore = idToViewCounts.get(leastViewedId);
-      if (entry.getValue() >= lowestScore) {
-        break;
+      if (entry.getValue() < lowestScore) {
+        leastViewedId = entry.getKey();
       }
-      leastViewedId = entry.getKey();
+
     }
     return flashCardRepository.findOne(leastViewedId);
   }
