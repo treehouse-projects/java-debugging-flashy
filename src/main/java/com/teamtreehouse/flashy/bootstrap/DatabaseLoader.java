@@ -26,6 +26,10 @@ public class DatabaseLoader implements ApplicationRunner {
     cards.add(new FlashCard("JRE", "Java Runtime Environment"));
     cards.add(new FlashCard("JCL", "Java Class Library"));
     cards.add(new FlashCard("JVM", "Java Virtual Machine"));
+    cards.add(new FlashCard("JNDI", "Java Naming and Directory Interface"));
+    cards.add(new FlashCard("JDBC", "Java Database Connectivity"));
+    cards.add(new FlashCard("AJAX", "Asynchronous JavaScript and XML"));
+    cards.add(new FlashCard("JSON", "JavaScript Object Notation"));
     flashCardRepository.save(cards);
   }
 
