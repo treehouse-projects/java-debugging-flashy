@@ -12,6 +12,7 @@ import java.util.List;
 
 @Controller
 public class IndexController {
+  public static final int AMOUNT_IN_TOTAL = 3;
   private FlashCardService flashCardService;
 
   @Autowired
@@ -22,7 +23,7 @@ public class IndexController {
   @RequestMapping("/")
   public String index(Model model) {
     StringBuilder ctaBuilder = new StringBuilder();
-    List<FlashCard> cards = flashCardService.getRandomFlashCards(5);
+    List<FlashCard> cards = flashCardService.getRandomFlashCards(AMOUNT_IN_TOTAL);
     ctaBuilder.append("Refresh your memory about ");
     for (FlashCard card : cards) {
       ctaBuilder.append(card.getTerm());
@@ -30,12 +31,15 @@ public class IndexController {
         ctaBuilder.append(", ");
       }
     }
-    ctaBuilder.append(" and ");
     Long totalCount = flashCardService.getCurrentCount();
-    ctaBuilder.append(totalCount);
-    ctaBuilder.append(" more");
-    model.addAttribute("cta", ctaBuilder.toString());
-    model.addAttribute("flashCardCount", totalCount);
+    if (totalCount > AMOUNT_IN_TOTAL){
+      ctaBuilder.append(" and ");
+      ctaBuilder.append(totalCount - AMOUNT_IN_TOTAL);
+      ctaBuilder.append(" more.");
+      model.addAttribute("cta", ctaBuilder.toString());
+      model.addAttribute("flashCardCount");
+    }
+
     return "index";
   }
 
