@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <title>Flashy</title>
+    <meta name="description" content="A Flash Card game about Java terms" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto|Suez+One" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/global.css" />
+</head>
+<body class="index">
+    <div class="card">
+        <ul>
+            <li th:each="card : ${flashCards}">
+                <div th:text="|Term: ${card.term}|"></div>
+                <div th:text="|Definition: ${card.definition}|"></div>
+            </li>
+        </ul>
+        <form action="" method="post" th:object="${flashCard}">
+            <label for="term">Term:</label>
+            <input type="text" value="" th:field="*{term}" id="term"/>
+            <label for="definition">Definition:</label>
+            <input type="text" value="" th:field="*{definition}" id="definition"/>
+            <input type="submit" value="Add flash card"/>
+        </form>
+    </div>
+</body>
+</html>

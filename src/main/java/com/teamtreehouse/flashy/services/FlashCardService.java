@@ -12,4 +12,7 @@ public interface FlashCardService {
   FlashCard getNextUnseenFlashCard(Collection<Long> seenIds);
   FlashCard getNextFlashCardBasedOnViews(Map<Long, Long> idToViewCounts);
   List<FlashCard> getRandomFlashCards(int i);
+  void save(FlashCard flashCard);
+
+  List<FlashCard> findAll();
 }
