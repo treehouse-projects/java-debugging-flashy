@@ -24,7 +24,7 @@ public class FlashCardController {
   }
 
   private Map<Long, Long> getCardCounts(HttpServletRequest req) {
-    Map<Long, Long> cardCounts = (Map<Long, Long>) req.getSession().getAttribute("cardCounts");
+     Map<Long, Long> cardCounts = (Map<Long, Long>) req.getSession().getAttribute("cardCounts");
     if (cardCounts == null) {
       cardCounts = new HashMap<>();
       req.getSession().setAttribute("cardCounts", cardCounts);
