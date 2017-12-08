@@ -34,4 +34,14 @@ public class AdminController {
     return "redirect:/admin";
   }
 
+  @RequestMapping(path = "/admin/add")
+  public String addCard(@RequestParam Map<String, String> requestParams) {
+    FlashCard flashCard = new FlashCard(
+        requestParams.get("term"),
+        requestParams.get("definition")
+    );
+    service.save(flashCard);
+    return "redirect:/admin";
+  }
+
 }

@@ -13,6 +13,14 @@
             <button type="submit">Update</button>
           </form>
         </li>
+        <li>
+          <form th:action="@{admin/add}" method="post">
+            <p>Add a new card:</p>
+            <input type="text" name="term" placeholder="Enter a term for the new card" />
+            <input type="text" name="definition" placeholder="Enter a definition for the new card"/>
+            <button type="submit">Add</button>
+          </form>
+        </li>
     </ul>
 </body>
 </html>
