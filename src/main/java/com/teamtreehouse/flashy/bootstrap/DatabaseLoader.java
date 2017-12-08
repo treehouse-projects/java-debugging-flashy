@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
 
-@Component
+//@Component
 public class DatabaseLoader implements ApplicationRunner {
   @Autowired
   private FlashCardRepository flashCardRepository;
