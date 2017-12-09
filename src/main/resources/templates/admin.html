@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Flashy | Admin</title>
+</head>
+<body>
+    <ul>
+        <li th:each="card : ${cards}">
+          <form th:action="@{|admin/updatedelete/${card.id}|}" method="post">
+            <input type="text" name="term" th:value="${card.term}" />
+            <input type="text" name="definition" th:value="${card.definition}"/>
+            <button type="submit" name="updatedelete" value="update">Update</button>
+            <button type="submit" name="updatedelete" value="delete">Delete</button>
+          </form>
+        </li>
+        <li>
+          <form th:action="@{admin/add}" method="post">
+            <p>Add a new card:</p>
+            <input type="text" name="term" placeholder="Enter a term for the new card" />
+            <input type="text" name="definition" placeholder="Enter a definition for the new card"/>
+            <button type="submit">Add</button>
+          </form>
+        </li>
+    </ul>
+</body>
+</html>

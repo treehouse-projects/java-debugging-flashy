@@ -10,4 +10,6 @@ import java.util.List;
 public interface FlashCardRepository extends CrudRepository<FlashCard, Long> {
   List<FlashCard> findByIdNotIn(Collection<Long> ids);
   List<FlashCard> findAll();
+  FlashCard save(FlashCard flashCard);
+  void delete(Long id);
 }
