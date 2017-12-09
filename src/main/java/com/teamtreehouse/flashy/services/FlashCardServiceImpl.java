@@ -91,4 +91,11 @@ public class FlashCardServiceImpl implements FlashCardService {
   public FlashCard save(FlashCard flashCard) {
     return flashCardRepository.save(flashCard);
   }
+
+  @Override
+  public void delete(Long id) {
+    flashCardRepository.delete(id);
+  }
+
+
 }

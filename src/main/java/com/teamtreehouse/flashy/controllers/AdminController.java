@@ -25,12 +25,20 @@ public class AdminController {
     return "admin";
   }
 
-  @RequestMapping(path = "/admin/update/{id}", method = RequestMethod.POST)
+  @RequestMapping(path = "/admin/updatedelete/{id}", method = RequestMethod.POST)
   public String updateCard(@PathVariable Long id, @RequestParam Map<String, String> requestParams) {
-    FlashCard flashCard = service.getFlashCardById(id);
-    flashCard.setTerm(requestParams.get("term"));
-    flashCard.setDefinition(requestParams.get("definition"));
-    service.save(flashCard);
+    // Single controller method handling both update and delete operations
+    // Two buttons in the form with tha name "updatedelete"
+    // having different values "update" or "delete" to indicate to the controller
+    // which action to take
+    if (requestParams.get("updatedelete").equals("update")) {
+      FlashCard flashCard = service.getFlashCardById(id);
+      flashCard.setTerm(requestParams.get("term"));
+      flashCard.setDefinition(requestParams.get("definition"));
+      service.save(flashCard);
+    } else {
+      service.delete(id);
+    }
     return "redirect:/admin";
   }
 

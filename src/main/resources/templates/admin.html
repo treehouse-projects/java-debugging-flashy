@@ -7,10 +7,11 @@
 <body>
     <ul>
         <li th:each="card : ${cards}">
-          <form th:action="@{|admin/update/${card.id}|}" method="post">
+          <form th:action="@{|admin/updatedelete/${card.id}|}" method="post">
             <input type="text" name="term" th:value="${card.term}" />
             <input type="text" name="definition" th:value="${card.definition}"/>
-            <button type="submit">Update</button>
+            <button type="submit" name="updatedelete" value="update">Update</button>
+            <button type="submit" name="updatedelete" value="delete">Delete</button>
           </form>
         </li>
         <li>

@@ -14,4 +14,5 @@ public interface FlashCardService {
   List<FlashCard> getRandomFlashCards(int i);
   List<FlashCard> findAll();
   FlashCard save(FlashCard flashCard);
+  void delete(Long id);
 }
