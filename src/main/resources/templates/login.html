@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Flashy | Login</title>
+</head>
+<body>
+<form th:action="@{/login}" method="post" th:object="${user}">
+  <div><label> User Name : <input type="text" th:field="*{username}"/> </label></div>
+  <div><label> Password: <input type="password" th:field="*{password}"/> </label></div>
+  <div><input type="submit" value="Sign In"/></div>
+</form>
+<div th:replace="layout :: flash"></div>
+</body>
+</html>
