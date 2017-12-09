@@ -29,6 +29,7 @@ dependencies {
     compile 'org.eclipse.mylyn.github:org.eclipse.egit.github.core:2.1.5'
     // https://mvnrepository.com/artifact/org.apache.tomcat/tomcat-dbcp
     compile 'org.apache.tomcat:tomcat-dbcp:9.0.2'
+    compile 'org.springframework.boot:spring-boot-starter-security'
 
     testCompile group: 'junit', name: 'junit', version: '4.11'
 }
