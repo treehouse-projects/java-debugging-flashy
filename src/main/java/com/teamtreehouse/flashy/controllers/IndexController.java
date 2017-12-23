@@ -29,6 +29,7 @@ public class IndexController {
       ctaBuilder.append(card.getTerm());
       if (card != cards.get(cards.size() - 1)) {
         ctaBuilder.append(", ");
+
       }
     }
     Long totalCount = flashCardService.getCurrentCount();
