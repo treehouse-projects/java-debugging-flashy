@@ -12,7 +12,7 @@ import java.util.List;
 
 @Controller
 public class IndexController {
-  public static final int AMOUNT_TO_SHOW = 3;
+  private static final int AMOUNT_TO_SHOW = 3;
   private FlashCardService flashCardService;
 
   @Autowired
