@@ -12,7 +12,7 @@ import java.util.List;
 
 @Controller
 public class IndexController {
-  public static final int AMOUNT_TO_SHOW = 5;
+  public static final int AMOUNT_TO_SHOW = 3;
   private FlashCardService flashCardService;
 
   @Autowired
@@ -31,10 +31,12 @@ public class IndexController {
         ctaBuilder.append(", ");
       }
     }
-    ctaBuilder.append(" and ");
     Long totalCount = flashCardService.getCurrentCount();
-    ctaBuilder.append(totalCount);
-    ctaBuilder.append(" more");
+    if (totalCount > AMOUNT_TO_SHOW) {
+      ctaBuilder.append(" and ");
+      ctaBuilder.append(totalCount - AMOUNT_TO_SHOW);
+      ctaBuilder.append(" more");
+    }
     model.addAttribute("cta", ctaBuilder.toString());
     model.addAttribute("flashCardCount", totalCount);
     return "index";
