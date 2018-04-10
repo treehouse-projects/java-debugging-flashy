@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/flashy.iml" filepath="$PROJECT_DIR$/.idea/modules/flashy.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/flashy_main.iml" filepath="$PROJECT_DIR$/.idea/modules/flashy_main.iml" group="flashy" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/flashy_test.iml" filepath="$PROJECT_DIR$/.idea/modules/flashy_test.iml" group="flashy" />
+      <module fileurl="file://$PROJECT_DIR$/java-debugging-flashy.iml" filepath="$PROJECT_DIR$/java-debugging-flashy.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/java-debugging-flashy_main.iml" filepath="$PROJECT_DIR$/.idea/modules/java-debugging-flashy_main.iml" group="java-debugging-flashy" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/java-debugging-flashy_test.iml" filepath="$PROJECT_DIR$/.idea/modules/java-debugging-flashy_test.iml" group="java-debugging-flashy" />
     </modules>
   </component>
 </project>
