@@ -1,6 +1,7 @@
 package com.teamtreehouse.flashy.domain;
 
 public class BootstrapOptions {
+
   private boolean shouldFork;
   private String githubOauth;
 

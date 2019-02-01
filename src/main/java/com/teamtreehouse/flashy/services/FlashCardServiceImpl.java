@@ -16,6 +16,7 @@ import static java.util.stream.Collectors.toList;
 
 @Service
 public class FlashCardServiceImpl implements FlashCardService {
+
   private FlashCardRepository flashCardRepository;
 
   @Autowired
@@ -75,7 +76,7 @@ public class FlashCardServiceImpl implements FlashCardService {
     List<FlashCard> cards = flashCardRepository.findAll();
     Collections.shuffle(cards);
     return cards.stream()
-            .limit(amount)
-            .collect(toList());
+        .limit(amount)
+        .collect(toList());
   }
 }

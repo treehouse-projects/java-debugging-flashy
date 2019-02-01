@@ -25,10 +25,12 @@ import static java.util.stream.Collectors.toList;
 
 @Controller
 public class BootstrapController {
+
   private final String GITHUB_MASTER_REPO_OWNER = "treehouse-projects";
   private final String GITHUB_MASTER_REPO_NAME = "java-debugging-flashy";
 
   public static class WorkLog {
+
     private List<String> actions;
 
     public WorkLog() {
@@ -72,7 +74,7 @@ public class BootstrapController {
     return "bootstrap_github";
   }
 
-  public String getGitHubUserName() throws IOException{
+  public String getGitHubUserName() throws IOException {
     GitHubClient client = new GitHubClient();
     client.setOAuth2Token(oauthToken);
     UserService userService = new UserService(client);
@@ -90,21 +92,23 @@ public class BootstrapController {
       repo = repositoryService.getRepository(gitHubUserName, GITHUB_MASTER_REPO_NAME);
     } catch (RequestException re) {
       Repository masterRepo = repositoryService.getRepository(GITHUB_MASTER_REPO_OWNER,
-                GITHUB_MASTER_REPO_NAME);
+          GITHUB_MASTER_REPO_NAME);
       repo = repositoryService.forkRepository(masterRepo);
       workLog.track("Forked repository %s/%s", GITHUB_MASTER_REPO_OWNER, GITHUB_MASTER_REPO_NAME);
     }
     List<String> existingIssueTitles = new ArrayList<>();
-    for (Collection<Issue> existingIssues : issueService.pageIssues(gitHubUserName, repo.getName())) {
+    for (Collection<Issue> existingIssues : issueService
+        .pageIssues(gitHubUserName, repo.getName())) {
       existingIssueTitles.addAll(existingIssues.stream()
-              .map(Issue::getTitle)
-              .collect(toList()));
+          .map(Issue::getTitle)
+          .collect(toList()));
     }
     repo.setHasIssues(true);
     repositoryService.editRepository(repo);
     workLog.track("Enabled issues for your repository %s", GITHUB_MASTER_REPO_NAME);
     int issueCount = 0;
-    for (Collection<Issue> issues : issueService.pageIssues(GITHUB_MASTER_REPO_OWNER, GITHUB_MASTER_REPO_NAME)) {
+    for (Collection<Issue> issues : issueService
+        .pageIssues(GITHUB_MASTER_REPO_OWNER, GITHUB_MASTER_REPO_NAME)) {
       for (Issue issue : issues) {
         if (!existingIssueTitles.contains(issue.getTitle())) {
           issueService.createIssue(gitHubUserName, GITHUB_MASTER_REPO_NAME, issue);

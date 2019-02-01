@@ -13,6 +13,7 @@ import java.util.List;
 
 @Component
 public class DatabaseLoader implements ApplicationRunner {
+
   @Autowired
   private FlashCardRepository flashCardRepository;
 
