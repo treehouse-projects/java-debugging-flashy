@@ -27,14 +27,16 @@ public class IndexController {
     ctaBuilder.append("Refresh your memory about ");
     for (FlashCard card : cards) {
       ctaBuilder.append(card.getTerm());
-      if (card != cards.get(cards.size() - 1)) {
+      if (card != cards.get(cards.size() - AMOUNT_TO_SHOW)) {
         ctaBuilder.append(", ");
       }
     }
-    ctaBuilder.append(" and ");
     Long totalCount = flashCardService.getCurrentCount();
-    ctaBuilder.append(totalCount - cards.size());
-    ctaBuilder.append(" more");
+    if (totalCount > AMOUNT_TO_SHOW) {
+      ctaBuilder.append(" and ");
+      ctaBuilder.append(totalCount - cards.size());
+      ctaBuilder.append(" more");
+    }
     model.addAttribute("cta", ctaBuilder.toString());
     model.addAttribute("flashCardCount", totalCount);
     return "index";
