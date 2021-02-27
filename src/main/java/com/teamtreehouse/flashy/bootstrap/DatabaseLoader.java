@@ -26,7 +26,7 @@ public class DatabaseLoader implements ApplicationRunner {
     cards.add(new FlashCard("JRE", "Java Runtime Environment"));
     cards.add(new FlashCard("JCL", "Java Class Library"));
     cards.add(new FlashCard("JVM", "Java Virtual Machine"));
-    flashCardRepository.save(cards);
+    flashCardRepository.saveAll(cards);
   }
 
 }
