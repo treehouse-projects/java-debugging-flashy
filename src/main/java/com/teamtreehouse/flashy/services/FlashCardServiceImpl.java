@@ -30,7 +30,7 @@ public class FlashCardServiceImpl implements FlashCardService {
 
   @Override
   public FlashCard getFlashCardById(Long id) {
-    return flashCardRepository.findOne(id);
+    return flashCardRepository.findById(id).get();
   }
 
   @Override
@@ -67,7 +67,7 @@ public class FlashCardServiceImpl implements FlashCardService {
       }
       leastViewedId = entry.getKey();
     }
-    return flashCardRepository.findOne(leastViewedId);
+    return flashCardRepository.findById(leastViewedId).get();
   }
 
   @Override
